@@ -16,12 +16,37 @@ public class MainApplication {
             String str = sc.next();
 
             if (str.equalsIgnoreCase("s")) {
-                System.out.println("Start simul");
+                System.out.println("Which Stone do you want? Choose your number!");
+                System.out.println("1.영웅 어빌리티스톤");
+                System.out.println("2.전설 어빌리티스톤");
+                System.out.println("3.유물 어빌리티스톤");
+                System.out.print(">>");
+                int pickStone = sc.nextInt();
+                switch(pickStone){
+                    case 1:
+                        System.out.println("영웅 어빌리티스톤 세공을 시작합니다.");
+
+                        break;
+                    case 2:
+                        System.out.println("전설 어빌리티스톤 세공을 시작합니다.");
+
+                        break;
+                    case 3:
+                        System.out.println("유물 어빌리티스톤 세공을 시작합니다.");
+
+                        break;
+                    default:
+                        System.out.println("1~3 사이의 숫자를 입력해주세요.");
+                        break;
+                }
             } else if (str.equalsIgnoreCase("Q")) {
                 System.out.println("Exit Program...");
                 break;
             } else if (str.equalsIgnoreCase("H")){
                 Help.printHelp();
+                continue;
+            } else {
+                System.out.println("잘못된 입력입니다. 처음부터 다시 해주세요.");
                 continue;
             }
         }

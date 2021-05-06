@@ -1,19 +1,19 @@
 package lostArk;
 
+import javax.lang.model.type.ArrayType;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class HeroStone extends SimuStone{
-    static char[] merit1 = new char[8];
-    char[] merit2 = new char[8];
-    char[] dmerit = new char[8];
+public class HeroStone extends SimuStone {
+    ArrayList<String> merit1 = new ArrayList<>();
+    ArrayList<String> merit2 = new ArrayList<>();
+    ArrayList<String> dmerit = new ArrayList<>();
 
-    public static void setMerit1(char[] merit1) {
-        HeroStone.merit1 = merit1;
-    }
-
-    public static char[] getMerit1() {
-        return merit1;
+    @Override
+    void cutStone() {
+        for (int i = 0; i < 24; i++) {
+            super.cutStone();
+        }
     }
 }
