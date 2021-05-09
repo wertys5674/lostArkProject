@@ -1,34 +1,85 @@
 package lostArk;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class SimuStone {
-    int sucPer = 75;
-    int percentage = (int) (Math.random() * 100 + 1);
+    Scanner scanner;
+    int size;
+    int count;
 
-    void cutStone() {
-        if (percentage <= sucPer) {
-            this.success();
-            sucPer -= 10;
-            if (sucPer < 25) {
-                sucPer += 10;
+    final ArrayList<String> firstLine;
+    final ArrayList<String> secondLine;
+    final ArrayList<String> thirdLine;
+
+    int success = 75;
+    int rand;
+
+    SimuStone(int size, Scanner scanner) {
+        this.size = size;
+        this.count = size * 3;
+
+        firstLine = new ArrayList<>();
+        secondLine = new ArrayList<>();
+        thirdLine = new ArrayList<>();
+
+        this.scanner = scanner;
+    }
+
+    void play() {
+        while (count > 0) {
+            System.out.print("성공확률 : " + success + "% 숫자를 입력하세요. >>");
+            String s = scanner.next();
+            int pick = Integer.parseInt(s);
+            validateSize(chooseLine(pick));
+            chooseLine(pick).add(getSF());
+            count --;
+        }
+
+        System.out.println("돌깎기가 완료되었습니다.");
+        System.out.println("firstLine" + firstLine);
+        System.out.println("SecondLine" + secondLine);
+        System.out.println("ThirdLine" + thirdLine);
+    }   //돌깎기 시작.
+
+    String getSF() {
+        rand = (int) (Math.random() * 100 + 1);
+        if (success >= rand) {
+            success -= 10;
+            if (success < 25) {
+                success += 10;
             }
+            System.out.println("Success!");
+            return "S";
         } else {
-            this.failure();
-            sucPer += 10;
-            if (sucPer > 75) {
-                sucPer -= 10;
+            success += 10;
+            if (success > 75) {
+                success -= 10;
             }
+            System.out.println("Fail!");
+            return "F";
         }
     }
 
-    public void success(ArrayList<String> arrList) {
-        // 해당 돌의 Arraylist N 에서 S 로 바꿔주고
-        arrList.add("S");
+    List chooseLine(int choose) {
+        if (choose == 1)
+            return firstLine;
+        if (choose == 2)
+            return secondLine;
+        if (choose == 3)
+            return thirdLine;
+
+        throw new IllegalArgumentException("1~3의 입력값이 필요합니다.");
     }
 
-    public void failure(ArrayList<String> arrList) {
-        // 해당 돌의 Arraylist F로 바꿔준다.
-        arrList.add("F");
+//    void mark(int pick,String mark){
+//        chooseLine(pick).add(getSF());
+//    }
+
+    void validateSize(List line) {
+        if (line.size() > size - 1)
+            throw new IllegalArgumentException(line.toString());
     }
 }
+

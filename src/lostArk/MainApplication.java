@@ -21,19 +21,25 @@ public class MainApplication {
                 System.out.println("2.전설 어빌리티스톤");
                 System.out.println("3.유물 어빌리티스톤");
                 System.out.print(">>");
-                int pickStone = sc.nextInt();
-                switch(pickStone){
+//                Scanner scanner = new Scanner(System.in);
+                String pickStone = sc.next();
+                int pick = Integer.parseInt(pickStone);
+
+                switch(pick){
                     case 1:
                         System.out.println("영웅 어빌리티스톤 세공을 시작합니다.");
-
+                        HeroStone hero = new HeroStone(sc);
+                        hero.play();
                         break;
                     case 2:
                         System.out.println("전설 어빌리티스톤 세공을 시작합니다.");
-
+                        LegendStone legend = new LegendStone(sc);
+                        legend.play();
                         break;
                     case 3:
                         System.out.println("유물 어빌리티스톤 세공을 시작합니다.");
-
+                        RelicStone relic = new RelicStone(sc);
+                        relic.play();
                         break;
                     default:
                         System.out.println("1~3 사이의 숫자를 입력해주세요.");
